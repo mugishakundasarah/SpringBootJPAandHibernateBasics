@@ -21,6 +21,20 @@ public class Student {
     @Transient
     private int age;
 
+    @ManyToOne
+    @JoinColumn(name = "did", nullable = false)
+    private Department department;
+
+
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public Student() {
     }
 
@@ -32,6 +46,15 @@ public class Student {
         this.dob = dob;
     }
 
+
+    public Student(String firstName, String lastName, String email, LocalDate dob,  Department department) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.age = age;
+        this.department = department;
+    }
 
     public Student(String firstName, String lastName, String email, LocalDate dob) {
         this.firstName = firstName;
@@ -95,11 +118,11 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", dob='" + dob + '\'' +
-                ", age=" + this.getAge() +
+                ", dob=" + dob +
+                ", age=" + age +
+                ", department=" + department +
                 '}';
     }
-
 
     public void setId(Long id) {
         this.id = id;
